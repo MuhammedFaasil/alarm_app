@@ -11,7 +11,7 @@ class TimeWidget extends StatelessWidget {
       width: 200,
       decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: [
+          boxShadow:const [
             BoxShadow(
                 spreadRadius: .5,
                 blurRadius: 5,
@@ -21,14 +21,14 @@ class TimeWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Click to change time',
             style: TextStyle(fontSize: 8),
           ),
           Center(
             child: Text(
               time,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 35,
                 color: Color(0xff23BA9F),
                 fontWeight: FontWeight.w600,

@@ -44,11 +44,12 @@ class AlarmsListWidget extends HookConsumerWidget {
                         style: const TextStyle(fontSize: 20),
                       ),
                       const SizedBox(
-                        height: 5,  
+                        height: 5,
                       ),
                       Text(
                         data[index].label,
-                        style: const TextStyle(fontSize: 13, color: Colors.blueGrey),
+                        style: const TextStyle(
+                            fontSize: 13, color: Colors.blueGrey),
                       )
                     ],
                   ),
@@ -56,25 +57,13 @@ class AlarmsListWidget extends HookConsumerWidget {
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // const Text("Fri, Mar 31"),
-                      Transform.scale(
-                        scale: .70,
-                        child: Switch(
-                          thumbIcon: MaterialStateProperty.all(const Icon(
-                            Icons.circle,
-                            color: Colors.white,
-                          )),
-                          trackOutlineColor:
-                              const MaterialStatePropertyAll(Colors.white),
-                          activeColor: Colors.red,
-                          thumbColor: MaterialStateProperty.all(Colors.white),
-                          activeTrackColor: const Color(0xff23BA9F),
-                          inactiveTrackColor:
-                              const Color.fromARGB(255, 226, 231, 235),
-                          value: true,
-                          onChanged: (value) {},
-                        ),
-                      ),
+                      IconButton(
+                          onPressed: () {
+                            ref
+                                .read(alarmsProvider.notifier)
+                                .deletAlarm(data[index].id!);
+                          },
+                          icon:const Icon(Icons.delete))
                     ],
                   ),
                 ),

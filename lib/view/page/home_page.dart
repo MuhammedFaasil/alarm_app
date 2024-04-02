@@ -1,13 +1,16 @@
+import 'package:alarm_app/controller/services/api_services.dart';
 import 'package:alarm_app/view/page/add_alarm_page.dart';
 import 'package:alarm_app/view/widgets/alarm_list_widget.dart';
 import 'package:alarm_app/view/widgets/circle_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class AlarmHomePage extends StatelessWidget {
+class AlarmHomePage extends HookConsumerWidget {
   const AlarmHomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final apiServices = ApiServices();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -20,7 +23,21 @@ class AlarmHomePage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const CircleWidget(),
+            FutureBuilder(
+              future: apiServices.getWeather(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else {
+                  final currentWeather = snapshot.data;
+                  return CircleWidget(
+                    weather: currentWeather!,
+                  );
+                }
+              },
+            ),
             const SizedBox(
               height: 20,
             ),

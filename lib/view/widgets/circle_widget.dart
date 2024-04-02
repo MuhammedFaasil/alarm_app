@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CircleWidget extends StatelessWidget {
-  const CircleWidget({super.key});
+  final String weather;
+  const CircleWidget({super.key, required this.weather});
 
   @override
   Widget build(BuildContext context) {
@@ -18,31 +18,22 @@ class CircleWidget extends StatelessWidget {
                 spreadRadius: .1,
                 color: Color.fromARGB(255, 206, 220, 236))
           ]),
-      child: const Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Next Alarm',
-              style: TextStyle(fontSize: 16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Temperature'),
+          const Text(
+            '🌦️',
+            style: TextStyle(fontSize: 40),
+          ),
+          Text(
+            '$weather ℃ ',
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
             ),
-            SizedBox(
-              height: 10,
-            ),
-            Text('04 : 30 AM',
-                style: TextStyle(
-                  fontSize: 21,
-                )),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              'Fri , Mar 31',
-              style: TextStyle(color: Color(0xff23BA9F), fontSize: 18),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

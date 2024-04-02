@@ -38,26 +38,25 @@ class AddAlarmPage extends HookConsumerWidget {
               Navigator.pop(context);
             },
             icon: const Icon(Icons.close)),
-        title:const Column(
+        title: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-             Text(
+            Text(
               'Add Alarm',
               style: TextStyle(fontSize: 19),
             ),
-          
           ],
         ),
         actions: [
           IconButton(
               onPressed: () {
+                final labelController =
+                    ref.read(alarmsProvider.notifier).labelController;
+                labelController.clear();
                 ref.read(alarmsProvider.notifier).addAlarms(AlarmModel(
                     time: formatTimeOfDay(
                         ref.read(selectedTimeProvider.notifier).state),
-                    label: ref
-                        .read(alarmsProvider.notifier)
-                        .labelController
-                        .text));
+                    label: labelController.text));
                 Navigator.pop(context);
               },
               icon: const Icon(Icons.check))
@@ -81,11 +80,9 @@ class AddAlarmPage extends HookConsumerWidget {
               ),
             ),
           ),
-          
           const SizedBox(
             height: 60,
           ),
-         
           TextFieldWidget(
             controller: ref.read(alarmsProvider.notifier).labelController,
           )
