@@ -2,7 +2,6 @@ import 'package:alarm_app/view/page/add_alarm_page.dart';
 import 'package:alarm_app/view/widgets/alarm_list_widget.dart';
 import 'package:alarm_app/view/widgets/circle_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AlarmHomePage extends StatelessWidget {
   const AlarmHomePage({super.key});
@@ -26,7 +25,7 @@ class AlarmHomePage extends StatelessWidget {
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               color: const Color(0xffF6F8F9),
               width: MediaQuery.sizeOf(context).width,
               height: 50,
@@ -57,7 +56,7 @@ class AlarmHomePage extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => AddAlarmPage(),
+                builder: (context) => const AddAlarmPage(),
               ));
         },
         label: const Icon(
